@@ -1,0 +1,100 @@
+<!-- 	 		圣杯布局        和      双飞翼布局（据说是玉伯提出）
+			
+					圣杯布局和双飞翼布局解决的问题是一样的，就是两边固定宽，
+					中间自适应的三栏布局，中间栏要在放在文档流前面以优先渲染。
+					
+					圣杯布局和双飞翼布局解决问题的方案在前一半是相同的，
+					也就是三栏全部float浮动，但左右两栏加上负margin让其跟中间栏div并排，以形成三栏布局。
+					
+					不同在于解决”中间栏div内容不被遮挡“问题的思路不一样：			
+					圣杯布局，为了中间div内容不被遮挡，将容器div设置了左右padding-left和padding-right后，
+					将左右两个div用相对布局position: relative并分别配合right和left属性，以便左右两栏div移动后不遮挡中间div。
+					双飞翼布局，为了中间div内容不被遮挡，直接在中间div内部创建子div用于放置内容，
+					在该子div里用margin-left和margin-right为左右两栏div留出位置。
+					
+					容器宽减少的时候，圣杯坍塌的快， 双飞翼坍塌的慢
+		
+-->
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="author" content="周炳光,bglky">
+		<meta name="copyright" content="周炳光,bglky">
+		<meta name="keywords" content="圣杯布局,双飞翼布局">
+		<meta name="description" content="圣杯布局,双飞翼布局">
+
+		<style>
+			.container {
+				background-color: #aaa;
+			}
+			
+			.container:after {
+				content: "";
+				display: block;
+				clear: both;
+			}
+			
+			.container>div {
+				float: left;
+			}
+			
+			.container>.main {
+				background-color: #ff0;
+				width: 100%;
+			}
+			
+			.container>.aside {
+				background-color: #f00;
+				width: 200px;
+				margin-left: -100%;
+			}
+			
+			.container>.extra {
+				background-color: #f0f;
+				width: 200px;
+				margin-left: -200px;
+			}
+			
+			.sb.container {
+				padding: 0 200px;
+			}
+			
+			.sb>.aside {
+				position: relative;
+				left: -200px;
+			}
+			
+			.sb>.extra {
+				position: relative;
+				right: -200px;
+			}
+			
+			.sfy .wrap {
+				margin: 0 200px;
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<h3>下面是圣杯布局</h3>
+		<div class="sb container">
+			<div class="main">这是主要内容区这是主要内容区这是主要内容区这是主要内容区这是主要内容区这是主要内容区</div>
+			<div class="aside">这是左侧边栏</div>
+			<div class="extra">这是右侧边栏</div>
+		</div>
+
+		<h3>下面是双飞翼布局</h3>
+		<div class="sfy container">
+			<div class="main">
+				<div class="wrap">这是主要内容区这是主要内容区这是主要内容区这是主要内容区这是主要内容区这是主要内容区</div>
+			</div>
+			<div class="aside">这是左侧边栏</div>
+			<div class="extra">这是右侧边栏</div>
+		</div>
+
+	</body>
+
+</html>
