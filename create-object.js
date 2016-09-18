@@ -79,7 +79,7 @@ function Person(name, age, job) {
  * 如果可以使用其他模式的情况下，不建议使用这样模式
  */
 
-function Person(name,age,job) {
+function Person(name, age, job) {
 	var o = new Object();
 	o.name = name;
 	o.age = age;
@@ -93,10 +93,10 @@ function Person(name,age,job) {
 /*
  * 稳妥构造函数模式
  */
-function Person (name,age,job) {
-	var o=new Object();
+function Person(name, age, job) {
+	var o = new Object();
 	//定义私有变量和函数	
-	o.sayName=function(){
+	o.sayName = function() {
 		alert(name);
 	}
 	return o;
