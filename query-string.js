@@ -10,11 +10,11 @@ function getQueryStringArgs() {
 	//取得每一项
 	var items = qs.length ? qs.split("&") : [];
 	//逐个将每一项添加到args对象中
-	items.forEach(function(item,index,array){
-		var name,value;
-		item=item.split("=");
+	items.forEach(function(item, index, array) {
+		var name, value;
+		item = item.split("=");
 		name = decodeURIComponent(item[0]);
-		value = decodeURIComponent(item[1]);		
+		value = decodeURIComponent(item[1]);
 		if (name.length) {
 			args[name] = value;
 		}
